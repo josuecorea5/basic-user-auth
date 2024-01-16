@@ -1,0 +1,6 @@
+@FirewoodAPI_HostAddress = http://localhost:5008
+
+GET {{FirewoodAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
