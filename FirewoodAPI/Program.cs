@@ -16,6 +16,15 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+//Cors
+builder.Services.AddCors(options =>
+{
+	options.AddPolicy("corsPolicy", policy =>
+	{
+		policy.WithOrigins("*").AllowAnyMethod().AllowAnyHeader();
+	});
+});
+
 //Repositories
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IReadRepository<Role>, RoleRepository>();
@@ -88,6 +97,8 @@ if (app.Environment.IsDevelopment())
 	app.UseSwagger();
 	app.UseSwaggerUI();
 }
+
+app.UseCors("corsPolicy");
 
 app.UseHttpsRedirection();
 app.UseAuthentication();
